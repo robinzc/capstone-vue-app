@@ -17,8 +17,13 @@
         <span v-if="!isLoggedIn()">
           <router-link to="/login">Login</router-link>
         </span>
+        |
         <span v-if="isLoggedIn()">
           <router-link to="/logout">Logout</router-link>
+        </span>
+        |
+        <span v-if="isLoggedIn()">
+          <router-link to="/connections">Connections</router-link>
         </span>
       </ul>
     </div>
