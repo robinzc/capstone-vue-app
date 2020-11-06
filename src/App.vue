@@ -3,27 +3,28 @@
     <div id="nav">
       <ul>
         <span>
-          <router-link to="/">Home</router-link>
+          <router-link to="/"> Home |</router-link>
         </span>
-        |
         <span>
-          <router-link to="/about">About</router-link>
+          <router-link to="/about"> About |</router-link>
         </span>
-        |
         <span v-if="!isLoggedIn()">
-          <router-link to="/signup">Signup</router-link>
+          <router-link to="/signup"> Signup |</router-link>
         </span>
-        |
         <span v-if="!isLoggedIn()">
-          <router-link to="/login">Login</router-link>
+          <router-link to="/login"> Login |</router-link>
         </span>
-        |
         <span v-if="isLoggedIn()">
-          <router-link to="/logout">Logout</router-link>
+          <router-link to="/logout"> Logout |</router-link>
         </span>
-        |
         <span v-if="isLoggedIn()">
-          <router-link to="/connections">Connections</router-link>
+          <router-link to="/users"> The Universe |</router-link>
+        </span>
+        <span v-if="isLoggedIn()">
+          <router-link to="/connections"> Connections |</router-link>
+        </span>
+        <span v-if="isLoggedIn()">
+          <router-link to="/users/1"> My Profile</router-link>
         </span>
       </ul>
     </div>

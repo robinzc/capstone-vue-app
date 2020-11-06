@@ -15,7 +15,15 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      connections: [],
+      connections: [
+        {
+          first_name: "",
+          last_name: "",
+          email: "",
+          languages_spoken: "",
+          image_url: "",
+        },
+      ],
     };
   },
   created: function() {
