@@ -11,6 +11,7 @@
         <span v-if="!isLoggedIn()">
           <router-link to="/signup"> Signup |</router-link>
         </span>
+        <!-- Needs to redirect to UsersNew to populate rest of profile after signing up -->
         <span v-if="!isLoggedIn()">
           <router-link to="/login"> Login |</router-link>
         </span>

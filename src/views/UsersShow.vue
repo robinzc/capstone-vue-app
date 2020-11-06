@@ -5,7 +5,7 @@
     <img :src="user.image_url" alt="" />
     <h5>{{ user.email }}</h5>
     <h5>{{ user.languages_spoken }}</h5>
-    <h5>{{ user.user_cities }}</h5>
+    <h5>{{ user.cities }}</h5>
   </div>
 </template>
 
@@ -28,4 +28,4 @@ export default {
 };
 </script>
 
-// Needs city association data
+// Needs city association data and friend validation

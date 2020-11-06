@@ -1,10 +1,28 @@
 <template>
   <div class="connections-index">
-    <h2>Your Universe</h2>
+    <h1>Your Universe</h1>
     <div v-for="connection in connections">
-      <h2>Sender: {{ connection.sender_id }}</h2>
-      <h4>Recipient: {{ connection.recipient_id }}</h4>
-      <h5>Accepted: {{ connection.accepted }}</h5>
+      <h3>
+        {{ connection.connection.first_name }}
+        {{ connection.connection.last_name }}
+      </h3>
+      <span class="image main"
+        ><img :src="connection.connection.image_url" alt=""
+      /></span>
+      <h5>Email: {{ connection.connection.email }}</h5>
+      <h5>Languages: {{ connection.connection.languages_spoken }}</h5>
+    </div>
+    <h1>Pending Connections</h1>
+    <div v-for="connection in connections">
+      <h3>
+        {{ connection.connection.first_name }}
+        {{ connection.connection.last_name }}
+      </h3>
+      <span class="image main"
+        ><img :src="connection.connection.image_url" alt=""
+      /></span>
+      <h5>Email: {{ connection.connection.email }}</h5>
+      <h5>Languages: {{ connection.connection.languages_spoken }}</h5>
     </div>
   </div>
 </template>
@@ -15,15 +33,7 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      connections: [
-        {
-          first_name: "",
-          last_name: "",
-          email: "",
-          languages_spoken: "",
-          image_url: "",
-        },
-      ],
+      connections: [],
     };
   },
   created: function() {

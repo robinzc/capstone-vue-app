@@ -69,3 +69,5 @@ export default {
   },
 };
 </script>
+
+// Needs to redirect to UsersNew to create profile on submit

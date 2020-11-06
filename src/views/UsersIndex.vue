@@ -32,3 +32,5 @@ export default {
   methods: {},
 };
 </script>
+
+// Need to add accepted friend flag
