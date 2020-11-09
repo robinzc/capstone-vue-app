@@ -25,15 +25,21 @@
       <input type="submit" class="btn btn-primary" value="Update" />
     </form>
     <div>
-      <label class="typo__label">Simple select / dropdown</label>
+      <h3>
+        Complete your profile by selecting the cities you have visited or lived
+        in.
+      </h3>
+    </div>
+    <div>
+      <label class="typo__label">First choose your cities:</label>
       <multiselect
         v-model="value"
-        :options="options"
+        :options="cityOptions"
         :multiple="true"
         :close-on-select="false"
         :clear-on-select="false"
         :preserve-search="true"
-        placeholder="Pick some"
+        placeholder="Select your cities"
         label="name"
         track-by="name"
         :preselect-first="true"
@@ -42,11 +48,14 @@
           ><span
             class="multiselect__single"
             v-if="values.length &amp;&amp; !isOpen"
-            >{{ values.length }} options selected</span
+            >{{ values.length }} cities selected</span
           ></template
         >
       </multiselect>
-      <pre class="language-json"><code>{{ value  }}</code></pre>
+      <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+      <div v-for="city in value">
+        <p>{{ city.name }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -62,16 +71,23 @@ export default {
       user: {},
       errors: [],
       value: [],
-      options: [
-        { name: "cats" },
-        { name: "fun stuff" },
-        { name: "butts" },
-        { name: "beer" },
-        { name: "tears" },
-        { name: "sleep" },
+      cityOptions: [
+        { name: "San Francisco, USA" },
+        { name: "Shanghai, China" },
+        { name: "Karachi, Pakistan" },
+        { name: "Prague, Czechia" },
+        { name: "Istanbul, Turkey" },
+        { name: "Berlin, Germany" },
       ],
     };
   },
+  // created: function () {
+  //   axios.get("api/user_cities").then((response) => {
+  //     this.tags = response.data;
+  //     console.log(response.data)
+  //   });
+  // },
+
   created: function() {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
@@ -93,6 +109,10 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    addNewCityAssociation: function() {
+      this.city.push(this.newCityAssociation);
+      this.newCityAssociation = "";
     },
   },
 };

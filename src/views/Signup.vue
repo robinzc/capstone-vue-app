@@ -29,6 +29,14 @@
           v-model="passwordConfirmation"
         />
       </div>
+      <div class="form-group">
+        <label>What languages do you speak?</label>
+        <input type="text" class="form-control" v-model="languages_spoken" />
+      </div>
+      <div class="form-group">
+        <label>Please enter a profile picture: </label>
+        <input type="url" class="form-control" v-model="image_url" />
+      </div>
       <input type="submit" class="btn btn-primary" value="Sign up!" />
     </form>
   </div>
@@ -45,6 +53,8 @@ export default {
       email: "",
       password: "",
       passwordConfirmation: "",
+      languages_spoken: "",
+      image_url: "",
       errors: [],
     };
   },
@@ -56,11 +66,20 @@ export default {
         email: this.email,
         password: this.password,
         password_confirmation: this.passwordConfirmation,
+        languages_spoken: this.languages_spoken,
+        image_url: this.image_url,
       };
+
       axios
         .post("/api/users", params)
         .then((response) => {
-          this.$router.push("/login");
+          axios.post("/api/sessions", params).then((response) => {
+            axios.defaults.headers.common["Authorization"] =
+              "Bearer " + response.data.jwt;
+            localStorage.setItem("jwt", response.data.jwt);
+            localStorage.setItem("user_id", response.data.user_id);
+            this.$router.push("/users/:id/edit");
+          });
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
@@ -70,4 +89,4 @@ export default {
 };
 </script>
 
-// Needs to redirect to UsersNew to create profile on submit
+// Not properly redirecting to users edit page

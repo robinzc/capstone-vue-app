@@ -1,10 +1,10 @@
 <template>
   <div class="users-index">
     <h2>The Travel Universe</h2>
-    <h5>
+    <h4>
       Find your travel network. Connect to your friends in order to build your
       universe and inform your travels through trusted advice.
-    </h5>
+    </h4>
     <div v-for="user in users">
       <h2>{{ user.first_name }} {{ user.last_name }}</h2>
       <h5>{{ user.email }}</h5>
