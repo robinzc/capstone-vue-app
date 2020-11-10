@@ -22,7 +22,6 @@
         <label>Picture:</label>
         <input type="text" class="form-control" v-model="user.image_url" />
       </div>
-      <input type="submit" class="btn btn-primary" value="Update" />
     </form>
     <div>
       <h3>
@@ -53,10 +52,50 @@
         >
       </multiselect>
       <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+      <h3>
+        Next check the box that indicates your knowledge of each city you've
+        chosen.
+      </h3>
       <div v-for="city in value">
         <p>{{ city.name }}</p>
+        <input
+          type="checkbox"
+          :id="city.id"
+          :value="city.id"
+          v-model="cityAssociations"
+        />
+        <label :for="city">I live here now.</label>
+        <br />
+        <input
+          type="checkbox"
+          :id="city.id"
+          :value="city.id"
+          v-model="cityAssociations"
+        />
+        <label :for="city">I used to live here.</label>
+        <br />
+        <input
+          type="checkbox"
+          :id="city.id"
+          :value="city.id"
+          v-model="cityAssociations"
+        />
+        <label :for="city">I've visited here.</label>
+        <br />
+        <input
+          type="checkbox"
+          :id="city.id"
+          :value="city.id"
+          v-model="cityAssociations"
+        />
+        <label :for="city">I'm visiting here now.</label>
+        <br />
       </div>
+      <br />
+      <span>Associated cities: {{ cityAssociations }}</span>
     </div>
+    <br />
+    <input type="submit" class="btn btn-primary" value="Update my profile" />
   </div>
 </template>
 
@@ -79,19 +118,19 @@ export default {
         { name: "Istanbul, Turkey" },
         { name: "Berlin, Germany" },
       ],
+      cityAssociations: [],
     };
   },
-  // created: function () {
-  //   axios.get("api/user_cities").then((response) => {
-  //     this.tags = response.data;
-  //     console.log(response.data)
-  //   });
-  // },
 
   created: function() {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.user = response.data;
+    });
+    axios.get("/api/cities").then((response) => {
+      this.cityOptions = response.data;
+      console.log(response.data);
+      this.cityAssociations = this.user.cities;
     });
   },
   methods: {
@@ -100,6 +139,7 @@ export default {
         email: this.user.email,
         languages_spoken: this.user.languages_spoken,
         image_url: this.user.image_url,
+        city_associations: this.cityAssociations,
       };
       axios
         .patch(`/api/users/${this.user.id}`, params)
@@ -110,14 +150,10 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    addNewCityAssociation: function() {
-      this.city.push(this.newCityAssociation);
-      this.newCityAssociation = "";
-    },
   },
 };
 </script>
 
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 
-// Needs city association data // Multiselect experiment...
+// Need to finish city association issues
