@@ -3,7 +3,7 @@
     <h2>The Travel Universe</h2>
     <h4>
       Find your travel network. Connect to your friends in order to build your
-      universe and inform your travels through trusted advice.
+      universe and inform your travels with trusted advice.
     </h4>
     <div v-for="user in users">
       <h2>{{ user.first_name }} {{ user.last_name }}</h2>
@@ -16,8 +16,10 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       users: [],
@@ -32,5 +34,3 @@ export default {
   methods: {},
 };
 </script>
-
-// Need to add accepted friend flag
