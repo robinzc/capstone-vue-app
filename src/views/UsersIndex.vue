@@ -1,15 +1,23 @@
 <template>
   <div class="users-index">
+    <div>Search by name: <input type="text" v-model="nameFilter" /></div>
     <h2>The Travel Universe</h2>
     <h4>
       Find your travel network. Connect to your friends in order to build your
       universe and inform your travels with trusted advice.
     </h4>
     <div v-for="user in users">
-      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-      <h5>{{ user.email }}</h5>
-      <h5>{{ user.languages_spoken }}</h5>
-      <span class="image main"><img :src="user.image_url" alt=""/></span>
+      <router-link :to="`/users/${user.id}`"></router-link>
+      <div>
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <h5>{{ user.email }}</h5>
+        <h5>{{ user.languages_spoken }}</h5>
+        <span class="image main"><img :src="user.image_url" alt=""/></span>
+        <router-link :to="`/users/${user.id}`">Profile</router-link>
+        <br />
+        <button v-on:click="createConnection()">Request to Connect</button>
+        <br />
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +31,7 @@ export default {
   data: function() {
     return {
       users: [],
+      nameFilter: "",
     };
   },
   created: function() {
@@ -31,6 +40,22 @@ export default {
       this.users = response.data;
     });
   },
-  methods: {},
+  methods: {
+    createConnection: function() {
+      var params = {
+        sender_id: this.sender_id,
+        recipient_id: this.recipient.id,
+      };
+      axios
+        .post("/api/connections", params)
+        .then((response) => {
+          this.$router.push("/connections");
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+          this.status = error.response.status;
+        });
+    },
+  },
 };
 </script>

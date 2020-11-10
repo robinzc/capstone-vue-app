@@ -1,5 +1,6 @@
 <template>
   <div class="connections-index">
+    <div>Search by name: <input type="text" v-model="nameFilter" /></div>
     <h1>Your Universe</h1>
     <div v-for="connection in connections">
       <h3>
@@ -29,11 +30,14 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       connections: [],
+      nameFilter: "",
     };
   },
   created: function() {
