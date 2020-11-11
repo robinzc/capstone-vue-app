@@ -26,8 +26,11 @@
         </span>
         <span v-if="isLoggedIn()">
           <router-link v-bind:to="`/users/${getUserId()}`">
-            My Profile</router-link
+            My Profile |</router-link
           >
+        </span>
+        <span v-if="isLoggedIn()">
+          <router-link to="/map_connections"> My Map</router-link>
         </span>
       </ul>
     </div>

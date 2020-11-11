@@ -33,35 +33,35 @@ export default {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
       this.user = response.data;
       console.log(response.data);
-      this.associated_cities = this.user.associated_cities.map((city) => {
-        return { id: city.city_id, name: city.city_name };
-      });
-      this.user.associated_cities.forEach((city) => {
-        if (city.current_living) {
-          this.associated_cities.push({
-            city_id: city.city_id,
-            current_living: true,
-          });
-        }
-        if (city.current_visiting) {
-          this.associated_cities.push({
-            city_id: city.city_id,
-            current_visiting: true,
-          });
-        }
-        if (city.visited) {
-          this.associated_cities.push({
-            city_id: city.city_id,
-            visited: true,
-          });
-        }
-        if (city.lived) {
-          this.associated_cities.push({
-            city_id: city.city_id,
-            lived: true,
-          });
-        }
-      });
+      // this.associated_cities = this.user.associated_cities.map((city) => {
+      //   return { id: city.city_id, name: city.city_name };
+      // });
+      // this.user.associated_cities.forEach((city) => {
+      //   if (city.current_living) {
+      //     this.associated_cities.push({
+      //       city_id: city.city_id,
+      //       current_living: true,
+      //     });
+      //   }
+      //   if (city.current_visiting) {
+      //     this.associated_cities.push({
+      //       city_id: city.city_id,
+      //       current_visiting: true,
+      //     });
+      //   }
+      //   if (city.visited) {
+      //     this.associated_cities.push({
+      //       city_id: city.city_id,
+      //       visited: true,
+      //     });
+      //   }
+      //   if (city.lived) {
+      //     this.associated_cities.push({
+      //       city_id: city.city_id,
+      //       lived: true,
+      //     });
+      //   }
+      // });
     });
   },
   methods: {},

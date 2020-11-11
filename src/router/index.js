@@ -9,6 +9,8 @@ import UsersIndex from "../views/UsersIndex.vue";
 import UsersShow from "../views/UsersShow.vue";
 import UsersNew from "../views/UsersNew.vue";
 import UsersEdit from "../views/UsersEdit.vue";
+import ConnectionsMap from "../views/ConnectionsMap.vue";
+
 
 Vue.use(VueRouter);
 
@@ -65,6 +67,11 @@ const routes = [
     path: "/users/:id/edit",
     name: "users-edit",
     component: UsersEdit
+  },
+  {
+    path: "/connections/map_connections",
+    name: "connections-map",
+    component: ConnectionsMap
   }
 
 ];
