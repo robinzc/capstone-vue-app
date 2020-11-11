@@ -1,12 +1,24 @@
 <template>
   <div class="users-index">
-    <div>Search by name: <input type="text" v-model="nameFilter" /></div>
+    <div>
+      Search by name: <input type="text" v-model="nameFilter" list="names" />
+      <datalist id="names">
+        <option v-for="user in users"
+          >{{ user.first_name }} {{ user.last_name }}</option
+        >
+      </datalist>
+    </div>
     <h2>The Travel Universe</h2>
     <h4>
       Find your travel network. Connect to your friends in order to build your
       universe and inform your travels with trusted advice.
     </h4>
-    <div v-for="user in users">
+    <div
+      v-for="user in orderBy(
+        filterBy(users, nameFilter, 'last_name', 'first_name'),
+        'last_name'
+      )"
+    >
       <router-link :to="`/users/${user.id}`"></router-link>
       <div>
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
