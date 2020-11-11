@@ -8,13 +8,12 @@
 
     <h3>My Cities</h3>
 
-    <!-- <h4>I live in: {{ user.associated_cities.city_name }}</h4>
-    <h4>I'm currently visiting: {{ user.associated_cities.city_name }}</h4>
-    <h4>Cites I've visited: {{ user.associated_cities.city_name }}</h4>
-    <h3>Cities I have livedin: {{ user.associated_cities.city_name }}</h3>
-     -->
     <div v-for="associated_city in user.associated_cities">
-      <p>{{ user.associated_cities }}</p>
+      <h4>{{ associated_city.city_name }}</h4>
+      <p>Living: {{ associated_city.current_living }}</p>
+      <p>Visiting: {{ associated_city.current_visiting }}</p>
+      <p>Lived: {{ associated_city.lived }}</p>
+      <p>Visited: {{ associated_city.visited }}</p>
     </div>
   </div>
 </template>

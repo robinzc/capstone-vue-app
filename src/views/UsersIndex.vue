@@ -25,6 +25,7 @@
         <h5>{{ user.email }}</h5>
         <h5>{{ user.languages_spoken }}</h5>
         <span class="image main"><img :src="user.image_url" alt=""/></span>
+        <br />
         <router-link :to="`/users/${user.id}`">Profile</router-link>
         <br />
         <button v-on:click="createConnection()">Request to Connect</button>
