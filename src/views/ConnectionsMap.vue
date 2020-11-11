@@ -17,7 +17,7 @@ import mapboxgl from "mapbox-gl";
 export default {
   data: function() {
     return {
-      message: "My map",
+      message: "Your Travel Universe",
     };
   },
   mounted: function() {

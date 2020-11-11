@@ -69,7 +69,7 @@ const routes = [
     component: UsersEdit
   },
   {
-    path: "/connections/map_connections",
+    path: "/map_connections",
     name: "connections-map",
     component: ConnectionsMap
   }
