@@ -1,9 +1,10 @@
 <template>
   <div class="connections-map">
     <h1>{{ message }}</h1>
-    <!-- <div v-for="cityOption in cityOptions"> -->
-    <h3>{{ cityOptions }}</h3>
-    <!-- </div> -->
+    <!-- <div v-for="associated_city in friendCities.associated_cities">
+      <h3>{{ associated_cities }}</h3>
+    </div> -->
+    <h3>{{ friendCities }}</h3>
     <div id="map"></div>
   </div>
 </template>
@@ -24,12 +25,13 @@ export default {
       message: "Your Travel Universe",
       cities: [],
       friendCities: [
-        {
-          long: -122.4194,
-          lat: 37.7749,
-          description: "San Francisco",
-        },
+        // {
+        //   long: -122.4194,
+        //   lat: 37.7749,
+        //   description: "San Francisco",
+        // },
       ],
+      associated_cities: [],
     };
   },
   mounted: function() {
@@ -41,9 +43,7 @@ export default {
       zoom: 1.5, // starting zoom
     });
     this.friendCities.forEach((friendCity) => {
-      var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-        friendCity.description
-      );
+      var popup = new mapboxgl.Popup({ offset: 25 }).setText(friendCity.name);
       var marker = new mapboxgl.Marker()
         .setLngLat([friendCity.long, friendCity.lat])
         .setPopup(popup)
@@ -51,8 +51,8 @@ export default {
     });
   },
   created: function() {
-    axios.get("/api/cities").then((response) => {
-      this.cityOptions = response.data;
+    axios.get("/api/map_connections").then((response) => {
+      this.friendCities = response.data;
       console.log(response.data);
     });
   },

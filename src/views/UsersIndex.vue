@@ -28,7 +28,7 @@
         <br />
         <router-link :to="`/users/${user.id}`">Profile</router-link>
         <br />
-        <button v-on:click="createConnection()">Request to Connect</button>
+        <button v-on:click="createConnection(user)">Request to Connect</button>
         <br />
       </div>
     </div>
@@ -54,10 +54,9 @@ export default {
     });
   },
   methods: {
-    createConnection: function() {
+    createConnection: function(user) {
       var params = {
-        sender_id: this.sender_id,
-        recipient_id: this.recipient.id,
+        recipient_id: user.id,
       };
       axios
         .post("/api/connections", params)

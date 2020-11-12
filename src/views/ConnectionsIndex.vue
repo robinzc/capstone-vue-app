@@ -10,10 +10,15 @@
       </datalist>
     </div>
     <h1>Your Universe</h1>
+    <button>
+      <router-link :to="`/map_connections`">
+        See your connections map</router-link
+      >
+    </button>
     <div
       v-for="connection in orderBy(
         filterBy(connections, nameFilter, 'user.last_name', 'user.first_name'),
-        'user.last_name'
+        'accepted'
       )"
     >
       <div>
@@ -26,7 +31,12 @@
         /></span>
         <h5>Email: {{ connection.user.email }}</h5>
         <h5>Languages: {{ connection.user.languages_spoken }}</h5>
-        <router-link :to="`/users/${connection.user.id}`">Profile</router-link>
+        <h5>Confirmed friend: {{ connection.accepted }}</h5>
+        <button>
+          <router-link :to="`/users/${connection.user.id}`"
+            >Profile</router-link
+          >
+        </button>
         <br />
       </div>
     </div>
