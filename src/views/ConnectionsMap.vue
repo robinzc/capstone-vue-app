@@ -1,6 +1,9 @@
 <template>
   <div class="connections-map">
     <h1>{{ message }}</h1>
+    <!-- <div v-for="cityOption in cityOptions"> -->
+    <h3>{{ cityOptions }}</h3>
+    <!-- </div> -->
     <div id="map"></div>
   </div>
 </template>
@@ -13,11 +16,13 @@
 </style>
 
 <script>
+import axios from "axios";
 import mapboxgl from "mapbox-gl";
 export default {
   data: function() {
     return {
       message: "Your Travel Universe",
+      cities: [],
       friendCities: [
         {
           long: -122.4194,
@@ -43,6 +48,12 @@ export default {
         .setLngLat([friendCity.long, friendCity.lat])
         .setPopup(popup)
         .addTo(map);
+    });
+  },
+  created: function() {
+    axios.get("/api/cities").then((response) => {
+      this.cityOptions = response.data;
+      console.log(response.data);
     });
   },
   methods: {},
