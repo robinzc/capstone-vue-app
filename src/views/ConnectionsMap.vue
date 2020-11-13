@@ -66,7 +66,8 @@ export default {
             associated_city.latitude
           );
           var popup = new mapboxgl.Popup({ offset: 25 }).setText(
-            friend.first_name
+            friend.first_name,
+            friend.last_name
           );
           var marker = new mapboxgl.Marker()
             .setLngLat([associated_city.longitude, associated_city.latitude])

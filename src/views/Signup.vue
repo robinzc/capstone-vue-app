@@ -88,5 +88,3 @@ export default {
   },
 };
 </script>
-
-// Not properly redirecting to users edit page

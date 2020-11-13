@@ -20,7 +20,7 @@
       )"
     >
       <router-link :to="`/users/${user.id}`"></router-link>
-      <div>
+      <div v-if="!user.accepted_friend">
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
         <h5>{{ user.email }}</h5>
         <h5>{{ user.languages_spoken }}</h5>
@@ -28,7 +28,13 @@
         <br />
         <router-link :to="`/users/${user.id}`">Profile</router-link>
         <br />
-        <button v-on:click="createConnection(user)">Request to Connect</button>
+        <span
+          v-if="user.accepted_friend != true && user.pending_friend != true"
+        >
+          <button v-on:click="createConnection(user)">
+            Request to Connect
+          </button>
+        </span>
         <br />
       </div>
     </div>
