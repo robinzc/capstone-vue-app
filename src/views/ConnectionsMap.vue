@@ -1,10 +1,14 @@
 <template>
   <div class="connections-map">
     <h1>{{ message }}</h1>
-    <!-- <div v-for="associated_city in friendCities.associated_cities">
-      <h3>{{ associated_cities }}</h3>
+    <!-- <div v-for="friend in friends">
+      <div v-for="city in friend.associated_cities">
+        {{ city.name }}
+        {{ city.longitude }}
+        {{ city.latitude }}
+        {{ friend.first_name }} {{ friend.last_name }}
+      </div>
     </div> -->
-    <h3>{{ friendCities }}</h3>
     <div id="map"></div>
   </div>
 </template>
@@ -13,6 +17,19 @@
 #map {
   width: 100%;
   height: 800px;
+}
+
+#marker {
+  /* background-image: */
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
 }
 </style>
 
@@ -23,39 +40,54 @@ export default {
   data: function() {
     return {
       message: "Your Travel Universe",
-      cities: [],
-      friendCities: [
-        // {
-        //   long: -122.4194,
-        //   lat: 37.7749,
-        //   description: "San Francisco",
-        // },
-      ],
-      associated_cities: [],
+      friends: [],
     };
   },
-  mounted: function() {
-    mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
-    const map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
-      center: [-16.6291, 28.2916], // starting position [lng, lat]
-      zoom: 1.5, // starting zoom
-    });
-    this.friendCities.forEach((friendCity) => {
-      var popup = new mapboxgl.Popup({ offset: 25 }).setText(friendCity.name);
-      var marker = new mapboxgl.Marker()
-        .setLngLat([friendCity.long, friendCity.lat])
-        .setPopup(popup)
-        .addTo(map);
-    });
-  },
+  mounted: function() {},
   created: function() {
     axios.get("/api/map_connections").then((response) => {
-      this.friendCities = response.data;
+      this.friends = response.data;
       console.log(response.data);
+      mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_ACCESS_TOKEN;
+      const map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+        center: [-16.6291, 28.2916], // starting position [lng, lat]
+        zoom: 1.5, // starting zoom
+      });
+      this.friends.forEach((friend) => {
+        console.log(friend);
+        friend.associated_cities.forEach((associated_city) => {
+          console.log(
+            friend.first_name,
+            friend.last_name,
+            associated_city.name,
+            associated_city.longitude,
+            associated_city.latitude
+          );
+          var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+            friend.first_name
+          );
+          var marker = new mapboxgl.Marker()
+            .setLngLat([associated_city.longitude, associated_city.latitude])
+            .setPopup(popup)
+            .addTo(map);
+        });
+      });
     });
   },
   methods: {},
 };
 </script>
+// this.associated_cities = this.user.associated_cities.map((city) => { //
+return { id: city.city_id, name: city.city_name }; // }); //
+this.user.associated_cities.forEach((city) => { // if (city.current_living) { //
+this.associated_cities.push({ // city_id: city.city_id, // current_living: true,
+// }); // } // if (city.current_visiting) { // this.associated_cities.push({ //
+city_id: city.city_id, // current_visiting: true, // }); // } // if
+(city.visited) { // this.associated_cities.push({ // city_id: city.city_id, //
+visited: true, // }); // } // if (city.lived) { // this.associated_cities.push({
+// city_id: city.city_id, // lived: true, // }); // } // }); //
+this.associatedCities = this.friendCities.associated_cities.map( // (city) => {
+// return { // name: city.name, // longitude: city.longitude, // latitude:
+city.latitude, // }; // } // );

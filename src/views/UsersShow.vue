@@ -10,10 +10,10 @@
 
     <div v-for="associated_city in user.associated_cities">
       <h4>{{ associated_city.city_name }}</h4>
-      <p>Living: {{ associated_city.current_living }}</p>
-      <p>Visiting: {{ associated_city.current_visiting }}</p>
-      <p>Lived: {{ associated_city.lived }}</p>
-      <p>Visited: {{ associated_city.visited }}</p>
+      <p v-if="associated_city.current_living">I'm living here</p>
+      <p v-if="associated_city.current_visiting">I'm visiting here</p>
+      <p v-if="associated_city.lived">I've lived here</p>
+      <p v-if="associated_city.visited">I've visited here</p>
     </div>
   </div>
 </template>

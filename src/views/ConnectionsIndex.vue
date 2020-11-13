@@ -37,6 +37,7 @@
             >Profile</router-link
           >
         </button>
+        <!-- Confirmed connections need an update/accept button -->
         <br />
       </div>
     </div>
