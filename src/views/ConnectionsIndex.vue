@@ -22,16 +22,16 @@
       )"
     >
       <div>
-        <h3>
+        <h2>
           {{ connection.user.first_name }}
           {{ connection.user.last_name }}
-        </h3>
+        </h2>
         <span class="image main"
           ><img :src="connection.user.image_url" alt=""
         /></span>
         <h5>Email: {{ connection.user.email }}</h5>
         <h5>Languages: {{ connection.user.languages_spoken }}</h5>
-        <h5>Confirmed friend: {{ connection.accepted }}</h5>
+        <h4 v-if="!connection.accepted">Connection pending</h4>
         <button>
           <router-link :to="`/users/${connection.user.id}`"
             >Profile</router-link

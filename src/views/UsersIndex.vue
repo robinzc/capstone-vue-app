@@ -24,6 +24,7 @@
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
         <h5>{{ user.email }}</h5>
         <h5>{{ user.languages_spoken }}</h5>
+        <h4 v-if="user.pending_friend">Connection pending</h4>
         <span class="image main"><img :src="user.image_url" alt=""/></span>
         <br />
         <router-link :to="`/users/${user.id}`">Profile</router-link>
@@ -77,3 +78,6 @@ export default {
   },
 };
 </script>
+
+// "user.id !== $parent.getUserId()" is not working to exclude current user from
+index
