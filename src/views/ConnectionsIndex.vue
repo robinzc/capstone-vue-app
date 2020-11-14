@@ -31,14 +31,27 @@
         /></span>
         <h5>Email: {{ connection.user.email }}</h5>
         <h5>Languages: {{ connection.user.languages_spoken }}</h5>
-        <h4 v-if="!connection.accepted">Connection pending</h4>
+        <h4 v-if="connection.accepted">Connected</h4>
+        <h4 v-if="!connection.accepted">Connection request pending</h4>
+        <span v-if="connection.accepted != true">
+          <button
+            v-if="connection.recipient_id == $parent.getUserId()"
+            v-on:click="updateConnection(connection)"
+          >
+            Accept connection request
+          </button>
+        </span>
         <button>
           <router-link :to="`/users/${connection.user.id}`"
             >Profile</router-link
           >
         </button>
-        <!-- Confirmed connections need an update/accept button -->
         <br />
+        <span v-if="connection.accepted">
+          <button v-on:click="destroyConnection(connection)">
+            Delete this connection
+          </button>
+        </span>
       </div>
     </div>
   </div>
@@ -62,6 +75,26 @@ export default {
       this.connections = response.data;
     });
   },
-  methods: {},
+  methods: {
+    updateConnection: function(connection) {
+      axios
+        .patch(`/api/connections/${connection.id}`)
+        .then((response) => {
+          this.$router.push(`/users/${connection.sender_id}`);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+    destroyConnection: function(connection) {
+      if (confirm("Are you sure you want to delete this connection?"));
+      {
+        axios.delete(`/api/connections/${connection.id}`).then((response) => {
+          console.log(response.data);
+          this.$router.push("/users");
+        });
+      }
+    },
+  },
 };
 </script>
