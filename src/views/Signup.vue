@@ -2,6 +2,7 @@
   <div class="signup">
     <form v-on:submit.prevent="submit()">
       <h1>Sign Up with Traverse</h1>
+      <h3>Start building your personal travel universe today!</h3>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
@@ -34,7 +35,7 @@
         <input type="text" class="form-control" v-model="languages_spoken" />
       </div>
       <div class="form-group">
-        <label>Please enter a profile picture: </label>
+        <label>Please enter a profile picture url: </label>
         <input type="url" class="form-control" v-model="image_url" />
       </div>
       <input type="submit" class="btn btn-primary" value="Sign up!" />

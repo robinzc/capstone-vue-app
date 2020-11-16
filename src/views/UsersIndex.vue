@@ -8,7 +8,7 @@
         >
       </datalist>
     </div>
-    <h2>The Travel Universe</h2>
+    <h1>The Travel Universe</h1>
     <h4>
       Find your travel network. Connect to your friends in order to build your
       universe and inform your travels with trusted advice.

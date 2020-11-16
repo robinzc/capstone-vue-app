@@ -1,6 +1,15 @@
 <template>
   <div class="connections-map">
     <h1>{{ message }}</h1>
+    <h4>
+      Visualize your friends' travel experiences on your personal map:
+
+      <br />
+      - See where your network is currently located and arrange a reunion.
+      <br />
+      - Find out where your friends have traveled so you can source trusted
+      travel advice for your upcoming adventures.
+    </h4>
     <!-- <div v-for="friend in friends">
       <div v-for="city in friend.associated_cities">
         {{ city.name }}

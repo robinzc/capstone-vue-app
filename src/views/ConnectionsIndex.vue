@@ -10,6 +10,12 @@
       </datalist>
     </div>
     <h1>Your Universe</h1>
+    <h4>
+      Explore the universe of your personal travel network: browse connections,
+      confirm pending requests, and access your friends' profiles.
+      <br />
+      Get inspiration for your next adventure!
+    </h4>
     <button>
       <router-link :to="`/map_connections`">
         See your connections map</router-link
