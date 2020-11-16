@@ -2,7 +2,7 @@
   <div class="connections-map">
     <h1>{{ message }}</h1>
     <h4>
-      Visualize your friends' travel experiences on your personal map:
+      Visualize your friends' travel experiences on your map:
 
       <br />
       - See where your network is currently located and arrange a reunion.

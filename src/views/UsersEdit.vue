@@ -50,8 +50,7 @@
             ></template
           >
         </multiselect>
-        {{ selectedCities }}
-        <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+        <!-- {{ selectedCities }} -->
         <h3>
           Next check the box that indicates your knowledge of each city you've
           chosen.
@@ -92,11 +91,16 @@
           <br />
         </div>
         <br />
-        <span>Associated cities: {{ cityAssociations }}</span>
+        <!-- <span>Associated cities: {{ cityAssociations }}</span> -->
       </div>
       <br />
       <input type="submit" class="btn btn-primary" value="Update my profile" />
     </form>
+    <span v-if="user.id == $parent.getUserId()">
+      <button v-on:click="destroyUser(user)">
+        Delete my profile
+      </button>
+    </span>
   </div>
 </template>
 
@@ -171,6 +175,18 @@ export default {
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    destroyUser: function(user) {
+      if (
+        confirm(
+          "Are you sure you want to delete your profile? You will delete your entire Traverse account and will lose all data."
+        )
+      ) {
+        axios.delete(`/api/users/${user.id}`).then((response) => {
+          console.log(response.data);
+          this.$router.push("/logout");
+        });
+      }
     },
   },
 };
