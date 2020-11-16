@@ -101,6 +101,9 @@
         Delete my profile
       </button>
     </span>
+    <button>
+      <router-link :to="`/users/${user.id}`">Cancel</router-link>
+    </button>
   </div>
 </template>
 

@@ -20,7 +20,7 @@
       <p v-if="associated_city.lived">I've lived here</p>
       <p v-if="associated_city.visited">I've visited here</p>
     </div>
-    <button>
+    <button v-if="user.id == $parent.getUserId()">
       <router-link :to="`/users/${this.user.id}/edit`">
         Update your profile</router-link
       >
