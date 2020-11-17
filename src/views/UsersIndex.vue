@@ -1,44 +1,108 @@
 <template>
   <div class="users-index">
-    <div>
-      Search by name: <input type="text" v-model="nameFilter" list="names" />
-      <datalist id="names">
-        <option v-for="user in users"
-          >{{ user.first_name }} {{ user.last_name }}</option
-        >
-      </datalist>
-    </div>
-    <h1>The Travel Universe</h1>
-    <h4>
-      Find your travel network. Connect to your friends in order to build your
-      universe and inform your travels with trusted advice.
-    </h4>
-    <div
-      v-for="user in orderBy(
-        filterBy(users, nameFilter, 'last_name', 'first_name'),
-        'last_name'
-      )"
-    >
-      <router-link :to="`/users/${user.id}`"></router-link>
-      <div v-if="!user.accepted_friend">
-        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <h5>{{ user.email }}</h5>
-        <h5>{{ user.languages_spoken }}</h5>
-        <h4 v-if="user.pending_friend">Connection pending</h4>
-        <span class="image main"><img :src="user.image_url" alt=""/></span>
-        <br />
-        <router-link :to="`/users/${user.id}`">Profile</router-link>
-        <br />
-        <span
-          v-if="user.accepted_friend != true && user.pending_friend != true"
-        >
-          <button v-on:click="createConnection(user)">
-            Request to Connect
-          </button>
-        </span>
-        <br />
+    <div class="right col-md-3 text-right">
+      <div class="nav-item m-0 p-0">
+        <div class="input-group mb-0">
+          <input
+            type="text"
+            class="form-control pill"
+            placeholder="Search by name"
+            v-model="nameFilter"
+            list="names"
+          />
+          <datalist id="names">
+            <option v-for="user in users"
+              >{{ user.first_name }} {{ user.last_name }}</option
+            >
+          </datalist>
+          <span class="input-group-btn">
+            <button
+              class="btn btn-xs btn-icon btn-circle btn-dark overlapping-btn"
+              type="button"
+            >
+              <i class="fas fa-search"></i>
+            </button>
+          </span>
+        </div>
+        <!-- / input-group -->
       </div>
+      <!-- / nav-item -->
     </div>
+    <section class="lg bg-secondary">
+      <div class="container">
+        <div class="section-title-area text-center mb-70">
+          <h3 class="section-title">THE TRAVEL UNIVERSE</h3>
+          <h4 class="section-sub-title fs-12">Find your travel network.</h4>
+          <h4 class="section-sub-title fs-12">
+            Connect to your friends. Build your universe. Inform your travels
+            with trusted advice.
+          </h4>
+        </div>
+        <!-- / section-title-area -->
+        <div
+          v-for="user in orderBy(
+            filterBy(users, nameFilter, 'last_name', 'first_name'),
+            'last_name'
+          )"
+        >
+          <div class="row">
+            <div class="col-md-4">
+              <router-link :to="`/users/${user.id}`"></router-link>
+              <div v-if="!user.accepted_friend">
+                <div class="card card-w-raised-img-top">
+                  <div class="card-body text-center">
+                    <img
+                      class="card-raised-img-top mb-30 rounded w-60 raised"
+                      :src="user.image_url"
+                      alt=""
+                    />
+                    <h6
+                      class="mb-5 fs-10 secondary-font text-black"
+                      v-if="user.pending_friend"
+                    >
+                      Connection pending
+                    </h6>
+                    <h5 class="card-title fw-bold mb-10 text-primary">
+                      {{ user.first_name }} {{ user.last_name }}
+                    </h5>
+                    <p class="card-text mb-30">
+                      My languages: {{ user.languages_spoken }}
+                    </p>
+                    <p class="mb-0">
+                      <router-link
+                        class="btn btn-xs btn-success m-5 pill"
+                        :to="`/users/${user.id}`"
+                        ><span class="fas fa-id-card mr-5"></span>
+                        <span>Profile</span></router-link
+                      >
+                      <span
+                        v-if="
+                          user.accepted_friend != true &&
+                            user.pending_friend != true
+                        "
+                      >
+                        <button
+                          class="btn btn-xs btn-primary m-5 pill"
+                          v-on:click="createConnection(user)"
+                        >
+                          <span class="fas fa-people-arrows mr-5"></span>
+                          <span>Request to connect</span>
+                        </button>
+                      </span>
+                    </p>
+                  </div>
+                  <!-- / card-body -->
+                </div>
+                <!-- / card -->
+              </div>
+            </div>
+            <!-- / column -->
+          </div>
+          <!-- / row -->
+        </div>
+      </div>
+      <!-- / container -->
+    </section>
   </div>
 </template>
 
