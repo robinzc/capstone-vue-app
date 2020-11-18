@@ -14,6 +14,7 @@
           </p>
           <br />
           <h2 class="section-title">{{ user.first_name }} {{ user.last_name }}</h2>
+          <br />
           <h5 class="section-title">My languages: {{ user.languages_spoken }}</h5>
           <h6 class="section-title">
             {{ user.email }}
@@ -37,45 +38,20 @@
                     <br />
                     
                     <div class="row">
-                    <div class="col-sm-6 col-md-3 tablet-top-30 text-center">
+                      <div class="col-sm-6 col-md-3 tablet-top-30 text-center" v-for="associated_city in user.associated_cities">
                         <div class="card">
                             <div class="card-body">
-                                <i class="fas fa-house-user fs-36 text-primary d-block mb-15"></i>
-                                <h3 class="timer" id="count-one" data-to="123" data-speed="1000">123</h3>
-                                <p>Visitors</p>
+                              <br />
+                                <!-- <i class="fas fa-house-user fs-30 text-info d-block mb-15"></i> -->
+                                <h5 class="card-title fw-bold mb-10 text-primary">{{ associated_city.city_name }}</h5>
+                                <p v-if="associated_city.current_living"><span><i class="fas fa-house-user fs-30 text-info d-block mb-15"></i></span>I'm living here</p>
+                                <p v-if="associated_city.current_visiting"><span><i class="fas fa-plane-arrival fs-30 text-info d-block mb-15"></i></span>I'm visiting here</p>
+                                <p v-if="associated_city.lived"><span><i class="fas fa-suitcase fs-30 text-info d-block mb-15"></i></span>I've lived here</p>
+                                <p v-if="associated_city.visited"><span><i class="fas fa-map-marker-alt fs-30 text-info d-block mb-15"></i></span>I've visited here</p>
                             </div><!-- / card-body -->
                         </div><!-- / card -->
                     </div><!-- / column -->
 
-                    <div class="col-sm-6 col-md-3 tablet-top-30 text-center">
-                        <div class="card">
-                            <div class="card-body">
-                                <i class="fas fa-suitcase fs-36 text-success d-block mb-15"></i>
-                                <h3 class="timer" id="count-two" data-to="456" data-speed="2000">456</h3>
-                                <p>Hours</p>
-                            </div><!-- / card-body -->
-                        </div><!-- / card -->
-                    </div><!-- / column -->
-
-                    <div class="col-sm-6 col-md-3 tablet-top-30 text-center">
-                        <div class="card">
-                            <div class="card-body">
-                                <i class="fas fa-plane-arrival fs-36 text-info d-block mb-15"></i>
-                                <h3 class="timer" id="count-three" data-to="789" data-speed="3000">789</h3>
-                                <p>Views</p>
-                            </div><!-- / card-body -->
-                        </div><!-- / card -->
-                    </div><!-- / column -->
-
-                    <div class="col-sm-6 col-md-3 tablet-top-30 text-center">
-                        <div class="card">
-                            <div class="card-body">
-                                <i class="fas fa-map-marker-alt fs-36 text-warning d-block mb-15"></i>
-                                <h3 class="timer" id="count-four" data-to="997" data-speed="4000">997</h3>
-                                <p>Comments</p>
-                            </div><!-- / card-body -->
-                        </div><!-- / card -->
-                    </div><!-- / column -->
                 </div>
                 <p class="card-text mb-0">
                       <span v-if="user.id == $parent.getUserId()">
@@ -90,21 +66,18 @@
                 </div>
                 <!-- / card -->
               </div>
-        </div>
-      </div>
-      <!-- / container -->
-  
-
-    <!-- <h3>My Cities</h3>
-
-    <div v-for="associated_city in user.associated_cities">
+              <!-- <div v-for="associated_city in user.associated_cities">
       <h4>{{ associated_city.city_name }}</h4>
       <p v-if="associated_city.current_living">I'm living here</p>
       <p v-if="associated_city.current_visiting">I'm visiting here</p>
       <p v-if="associated_city.lived">I've lived here</p>
       <p v-if="associated_city.visited">I've visited here</p>
-    </div>
-      --> 
+    </div> -->
+        </div>
+      </div>
+      <!-- / container -->
+
+      
   </div>
 </template>
 
@@ -139,3 +112,7 @@ current_visiting: true, // }); // } // if (city.visited) { //
 this.associated_cities.push({ // city_id: city.city_id, // visited: true, // });
 // } // if (city.lived) { // this.associated_cities.push({ // city_id:
 city.city_id, // lived: true, // }); // } // });n
+
+// <i class="fas fa-map-marker-alt fs-30 text-info d-block mb-15"></i>
+
+
