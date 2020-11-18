@@ -46,7 +46,7 @@
                 </div>
                 <!-- / promo-icon-bg -->
                 <h6
-                  class="box-title mb-15 text-hover success-hover secondary-font"
+                  class="box-title mb-15 text-hover info-hover secondary-font"
                 >
                   Build your personalized map
                 </h6>
@@ -71,7 +71,7 @@
                 </div>
                 <!-- / promo-icon-bg -->
                 <h6
-                  class="box-title mb-15 text-hover danger-hover secondary-font"
+                  class="box-title mb-15 text-hover info-hover secondary-font"
                 >
                   Inform your adventures from trusted sources
                 </h6>
