@@ -32,7 +32,7 @@
                         </div>
                         <!--/ input-group-prepend -->
                         <input
-                          type="text"
+                          type="email"
                           class="form-control w-icon-left"
                           id="contact-subject4"
                           name="inputSubject4"
@@ -54,7 +54,7 @@
                         </div>
                         <!--/ input-group-prepend -->
                         <input
-                          type="text"
+                          type="password"
                           class="form-control w-icon-left"
                           id="contact-name4"
                           name="inputName4"
