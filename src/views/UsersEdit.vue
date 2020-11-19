@@ -17,6 +17,9 @@
         novalidate="novalidate"
         v-on:submit.prevent="updateUser()"
       >
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
         <div class="row">
           <div class="col-md-6 sub-col-left">
             <div class="input-group">
@@ -85,9 +88,9 @@
         </div>
         <!-- / row -->
 
-        <ul>
+        <!-- <ul>
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
+        </ul> -->
 
         <div class="section-title">
           <section class="lg bg-secondary">
@@ -133,6 +136,7 @@
                     Check the box that indicates your knowledge of each city
                     you've chosen.
                   </h5>
+
                   <br />
                   <div class="col-md-12">
                     <div class="row">
@@ -141,12 +145,13 @@
                         v-for="(city, index) in selectedCities"
                       >
                         <div class="card">
-                          <div class="card-body radio radio-primary">
+                          <div class="card-body">
                             <br />
 
                             <h5 class="card-title fw-bold mb-10 text-primary">
                               {{ city.name }}
                             </h5>
+
                             <input
                               type="radio"
                               :id="city.id"
@@ -156,9 +161,10 @@
                               }"
                               v-model="cityAssociations[index]"
                             />
-                            <label class="mb-10" :for="city"
+                            <label class="mb-10 ml-5" :for="city"
                               ><span>I live here now.</span></label
                             >
+                            <br />
 
                             <input
                               type="radio"
@@ -166,9 +172,10 @@
                               :value="{ city_id: city.id, lived: true }"
                               v-model="cityAssociations[index]"
                             />
-                            <label class="mb-10" :for="city"
+                            <label class="mb-10 ml-5" :for="city"
                               ><span>I used to live here.</span></label
                             >
+                            <br />
 
                             <input
                               type="radio"
@@ -176,9 +183,10 @@
                               :value="{ city_id: city.id, visited: true }"
                               v-model="cityAssociations[index]"
                             />
-                            <label class="mb-10" :for="city"
+                            <label class="mb-10 ml-5" :for="city"
                               ><span>I've visited here.</span></label
                             >
+                            <br />
 
                             <input
                               type="radio"
@@ -189,7 +197,7 @@
                               }"
                               v-model="cityAssociations[index]"
                             />
-                            <label class="mb-10" :for="city"
+                            <label class="mb-10 ml-5" :for="city"
                               ><span>I'm visiting here now.</span></label
                             >
                           </div>
