@@ -18,7 +18,7 @@
           </datalist>
           <span class="input-group-btn">
             <button
-              class="btn btn-xs btn-icon btn-circle btn-dark overlapping-btn"
+              class="btn btn-xs btn-icon btn-circle btn-primary-gradient overlapping-btn"
               type="button"
             >
               <i class="fas fa-search"></i>
@@ -176,8 +176,7 @@ export default {
         });
     },
     destroyConnection: function(connection) {
-      if (confirm("Are you sure you want to delete this connection?"));
-      {
+      if (confirm("Are you sure you want to delete this connection?")) {
         axios.delete(`/api/connections/${connection.id}`).then((response) => {
           console.log(response.data);
           this.$router.push("/users");

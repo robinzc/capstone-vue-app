@@ -1,24 +1,31 @@
 <template>
   <div class="connections-map">
-    <h1>{{ message }}</h1>
-    <h4>
-      Visualize your friends' travel experiences on your map:
+    <section class="lg bg-secondary">
+      <div class="container">
+        <div class="section-title-area text-center mb-70">
+          <h1 class="section-title">YOUR TRAVEL UNIVERSE</h1>
+          <h4 class="section-title">Visualize your network geographically.</h4>
+          <h5 class="section-title">
+            Find your friends. Arrange a reunion. Get travel advice from trusted
+            sources.
+          </h5>
+        </div>
 
-      <br />
-      - See where your network is currently located and arrange a reunion.
-      <br />
-      - Find out where your friends have traveled so you can source trusted
-      travel advice for your upcoming adventures.
-    </h4>
-    <!-- <div v-for="friend in friends">
-      <div v-for="city in friend.associated_cities">
-        {{ city.name }}
-        {{ city.longitude }}
-        {{ city.latitude }}
-        {{ friend.first_name }} {{ friend.last_name }}
+        <!-- <div v-for="friend in friends">
+          <div v-for="city in friend.associated_cities">
+            {{ city.name }}
+            {{ city.longitude }}
+            {{ city.latitude }}
+            {{ friend.first_name }} {{ friend.last_name }}
+          </div>
+        </div> -->
+        <div class="card">
+          <div class="card-body">
+            <div id="map"></div>
+          </div>
+        </div>
       </div>
-    </div> -->
-    <div id="map"></div>
+    </section>
   </div>
 </template>
 

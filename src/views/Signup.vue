@@ -2,7 +2,7 @@
   <div class="signup">
     <div
       class="full-height relative p-y-30 v-center bg-img"
-      style="background-image: url(../assets/images/map-pins.jpg)"
+      style="background-image: url(../assets/images/main-header.jpg)"
     >
       <div class="overlay-dark"></div>
       <div class="container p-y-70">
@@ -11,7 +11,7 @@
         >
           <div
             class="col-lg-6 bg-img box-bg-image"
-            style="background-image: url(../assets/images/map-pins.jpg); min-height: 400px;"
+            style="background-image: url(../assets/images/main-header.jpg); min-height: 400px;"
           >
             &nbsp;
             <div class="section-title-area text-center">

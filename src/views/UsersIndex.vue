@@ -17,7 +17,7 @@
           </datalist>
           <span class="input-group-btn">
             <button
-              class="btn btn-xs btn-icon btn-circle btn-dark overlapping-btn"
+              class="btn btn-xs btn-icon btn-circle btn-primary-gradient overlapping-btn"
               type="button"
             >
               <i class="fas fa-search"></i>
